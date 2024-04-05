@@ -15,17 +15,14 @@ if ($conn->connect_error) {
 function login($username, $password) {
     global $conn;
     
-    $san_username = strtolower(trim(stripslashes($username)));
-    $san_password = trim(stripslashes($password));
-    
     $stmt = $conn->prepare('SELECT password FROM users WHERE username = ?');
-    $stmt->bind_param('s', $san_username);
+    $stmt->bind_param('s', $username);
     $stmt->execute();
     
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
     if ($result->num_rows > 0) {
-        if (password_verify($san_password, $user['password'])) {
+        if (password_verify($password, $user['password'])) {
             return true;
         } else {
             return false;
@@ -38,17 +35,14 @@ function login($username, $password) {
 function register($username, $password) {
     global $conn;
     
-    $san_username = strtolower(trim(stripslashes($username)));
-    $san_password = trim(stripslashes($password));
-    
     $stmt = $conn->prepare('SELECT username FROM users WHERE username = ?');
-    $stmt->bind_param('s', $san_username);
+    $stmt->bind_param('s', $username);
     $stmt->execute();
     
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         $stmt = $conn->prepare('INSERT INTO (username, password) VALUES (?, ?)');
-        $stmt->bind_param('ss', $san_username, $san_password);
+        $stmt->bind_param('ss', $username, $password);
         $stmt->execute();
         
         return true;

@@ -11,7 +11,7 @@ if (!$_SESSION['loggedin']) header('Location: login.php');
 	<title>Profile</title>
 </head>
 <body>
-	<p>Welcome, <span style="text-transform: capitilize;"><?= htmlspecialchars($_SESSION['loggedin']) ?></span>.</p>
+	<p>Welcome, <span style="text-transform: capitilize;"><?= htmlspecialchars($_SESSION['username']) ?></span>!</p>
 	<a href="logout.php">Logout</a>
 </body>
 </html>
