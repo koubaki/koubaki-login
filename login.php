@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $san_username = strtolower(trim(stripslashes($_POST['username'])));
         $san_password = password_hash(trim(stripslashes($_POST['password'])), PASSWORD_DEFAULT);
         
-        $login = login($_POST['username'], $_POST['password']);
+        $login = login($san_username, $san_password);
         
         if ($login) {
             $_SESSION['loggedin'] = true;
