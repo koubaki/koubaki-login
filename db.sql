@@ -1,4 +1,8 @@
 CREATE DATABASE db;
 USE db;
 
-CREATE TABLE users (id INT AUTO_INCREMENT NOT NULL, username varchar(50) UNIQUE NOT NULL, password TEXT NOT NULL PRIMARY KEY (id));
+CREATE TABLE users (
+	id INT AUTO_INCREMENT NOT NULL,
+	username varchar(50) UNIQUE NOT NULL,
+	password TEXT NOT NULL PRIMARY KEY (id)
+);
