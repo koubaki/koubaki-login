@@ -41,7 +41,7 @@ function register($username, $password) {
     
     $result = $stmt->get_result();
     if ($result->num_rows == 0) {
-        $stmt = $conn->prepare('INSERT INTO (username, password) VALUES (?, ?)');
+        $stmt = $conn->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
         $stmt->bind_param('ss', $username, $password);
         $stmt->execute();
         
