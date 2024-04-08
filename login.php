@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             $_SESSION['username'] = $san_username;
             $_SESSION['password'] = $san_password;
+            
+            header('Location: index.php');
         } else {
             $message = 'Wrong username or password.';
         }
