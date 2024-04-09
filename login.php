@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message = 'Password is required, and must be at least 8 characters.';
     } else {
         $san_username = strtolower(trim(stripslashes($_POST['username'])));
-        $san_password = password_hash(trim(stripslashes($_POST['password'])), PASSWORD_DEFAULT);
+        $san_password = trim(stripslashes($_POST['password']));
         
         $login = login($san_username, $san_password);
         
