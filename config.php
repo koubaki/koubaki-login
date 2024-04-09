@@ -21,7 +21,7 @@ function login($username, $password) {
     
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    if ($result->num_rows == 1) {
+    if ($result->num_rows > 0) {
         if (password_verify($password, $user['password'])) {
             return true;
         } else {
@@ -40,7 +40,7 @@ function register($username, $password) {
     $stmt->execute();
     
     $result = $stmt->get_result();
-    if ($result->num_rows == 0) {
+    if ($result->num_rows < 1) {
         $stmt = $conn->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
         $stmt->bind_param('ss', $username, $password);
         $stmt->execute();
